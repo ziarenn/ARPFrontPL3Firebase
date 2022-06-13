@@ -41,4 +41,9 @@ aboutButton.addEventListener("click", function () {
 // Login button event listener
 loginButton.addEventListener("click", function () {
   renderLoginPage();
+  // sprawdzacie czy uzytkownik istnieje
+  //jezeli istnieje:
+  // poszukajcie i uzyjcie funkcji signOut po czym wyswietlacie homePage
+  // jezeli nie istnieje:
+  // render loginPage
 });

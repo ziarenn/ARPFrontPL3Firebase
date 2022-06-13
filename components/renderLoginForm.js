@@ -1,6 +1,7 @@
 export default function () {
   const contentContainer = document.querySelector(".content");
   const form = document.createElement("form");
+  form.setAttribute('id', 'login-form')
   const inputEmail = document.createElement("input");
   inputEmail.setAttribute("type", "email");
   inputEmail.setAttribute("id", "input-email");

@@ -1,6 +1,11 @@
 import renderLoginForm from "./renderLoginForm.js";
 import renderRegisterForm from "./renderRegisterForm.js";
-
+import renderHomePage from "./renderHomePage.js";
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+const auth = getAuth();
 export default function () {
   // selecting the necessary
   const contentContainer = document.querySelector(".content");
@@ -29,4 +34,19 @@ export default function () {
     contentContainer.innerHTML = "";
     renderRegisterForm();
   });
+  const formInDOM = document.getElementById("login-form");
+  formInDOM.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("input-email").value;
+    const password = document.getElementById("input-Password").value;
+
+    signInWithEmailAndPassword(auth, email, password).then(
+      (userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user);
+        document.getElementById("login-anchor").textContent = "Logout";
+      }
+    );
+  });
+  // dodaj event listener na formularz i wykorzystaj narzędzia firebase/auth do zalogowania użytkownika
 }

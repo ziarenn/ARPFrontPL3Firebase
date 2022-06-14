@@ -1,5 +1,21 @@
 "use strict";
 
+import {
+  getAuth,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+const auth = getAuth();
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log(`User is logged in (${user.email}), onAuthStateChanged`);
+  } else {
+    console.log(`No user logged in. onAuthStateChanged`);
+    renderHomePage();
+  }
+});
+
 // Importing components
 import renderHomePage from "./components/renderHomePage.js";
 import renderTodoPage from "./components/renderTodoPage.js";
@@ -16,7 +32,6 @@ const loginButton = document.getElementById("login-anchor");
 
 // Selecting the content section
 const contentSection = document.querySelector(".content");
-const string = "123@123.pl";
 
 // Adding event listeners to the navbar buttons
 
@@ -30,7 +45,8 @@ homeButton.addEventListener("click", function () {
 
 // Todos button event listener
 todosButton.addEventListener("click", function () {
-  renderTodoPage();
+  const user = auth.currentUser;
+  user ? renderTodoPage() : renderLoginPage();
 });
 
 // About button event listener
@@ -41,6 +57,20 @@ aboutButton.addEventListener("click", function () {
 // Login button event listener
 loginButton.addEventListener("click", function () {
   renderLoginPage();
+  const user = auth.currentUser;
+  if (user) {
+    signOut(auth)
+      .then(() => {
+        renderHomePage();
+        loginButton.textContent = "Log in";
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  } else {
+    contentSection.innerHTML = "";
+    renderLoginPage();
+  }
   // sprawdzacie czy uzytkownik istnieje
   //jezeli istnieje:
   // poszukajcie i uzyjcie funkcji signOut po czym wyswietlacie homePage

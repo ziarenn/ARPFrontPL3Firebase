@@ -1,25 +1,12 @@
 import {
-  getDatabase,
   ref,
   push,
 } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
-const firebaseConfig = {
-  apiKey: "AIzaSyC_rHQ2nla6PtMNLKYrpid_aNwg8RxPSUY",
-  authDomain: "arpfrontpl3-firebase.firebaseapp.com",
-  projectId: "arpfrontpl3-firebase",
-  storageBucket: "arpfrontpl3-firebase.appspot.com",
-  messagingSenderId: "1084280855387",
-  appId: "1:1084280855387:web:8ee81418a75c69fb2ad87e",
-  measurementId: "G-HFEXP7R7XG",
-  databaseURL: 'https://arpfrontpl3-firebase-default-rtdb.europe-west1.firebasedatabase.app'
-};
+import firebase from "../firebaseConfig.js";
 
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
-const database = getDatabase();
+const app = firebase.app;
+const auth = firebase.auth;
+const database = firebase.database;
 
 export default function () {
   const contentContainer = document.querySelector(".content");
@@ -96,6 +83,12 @@ export default function () {
   divEducation.appendChild(radioCategoryEducation);
   divEducation.appendChild(radioCategoryEducationLabel);
 
+  // creating the submit button
+  const submitButton = document.createElement("button");
+  submitButton.setAttribute("type", "submit");
+  submitButton.classList.add("todo-form-submit-button");
+  submitButton.textContent = "Add todo";
+
   // appending children to fieldset
   fieldSet.appendChild(legend);
   fieldSet.appendChild(divWork);
@@ -109,29 +102,33 @@ export default function () {
   // appending the fieldset to form
   form.appendChild(fieldSet);
 
+  // appending the submit button to form
+  form.appendChild(submitButton);
+
+  return todoForm;
   // appending the form to content container
-  contentContainer.appendChild(form);
+  //contentContainer.appendChild(form);
 
-  // selecting elements that are already in the DOM
-  const formInDOM = document.getElementById("todo-form");
-  const inputInDOM = document.getElementById("todo-input");
+  // // selecting elements that are already in the DOM
+  // const formInDOM = document.getElementById("todo-form");
+  // const inputInDOM = document.getElementById("todo-input");
 
-  const radios = document.getElementsByName("category");
+  // const radios = document.getElementsByName("category");
 
-  // adding the event lister to the form
+  // // adding the event lister to the form
 
-  formInDOM.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const selectedCategory = Array.from(radios).find((el) => el.checked).value;
-    const todo = inputInDOM.value;
-    const response = {
-      todo: todo,
-      category: selectedCategory,
-    };
-    console.log(response);
-    // wrzuć odpowiednie dane do bazy danych
-    push(ref(database, "todos/" + auth.currentUser.uid), response).then(() => {
-      console.log("Operacja push zakończona powodzeniem");
-    });
-  });
+  // formInDOM.addEventListener("submit", function (e) {
+  //   e.preventDefault();
+  //   const selectedCategory = Array.from(radios).find((el) => el.checked).value;
+  //   const todo = inputInDOM.value;
+  //   const response = {
+  //     todo: todo,
+  //     category: selectedCategory,
+  //   };
+  //   console.log(response);
+  //   // wrzuć odpowiednie dane do bazy danych
+  //   push(ref(database, "todos/" + auth.currentUser.uid), response).then(() => {
+  //     console.log("Operacja push zakończona powodzeniem");
+  //   });
+  // });
 }

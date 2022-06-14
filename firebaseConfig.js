@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
+import { getAuth } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -14,10 +16,20 @@ const firebaseConfig = {
   messagingSenderId: "1084280855387",
   appId: "1:1084280855387:web:8ee81418a75c69fb2ad87e",
   measurementId: "G-HFEXP7R7XG",
+  databaseURL:
+    "https://arpfrontpl3-firebase-default-rtdb.europe-west1.firebasedatabase.app",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+const auth = getAuth();
+const database = getDatabase();
+export default {
+  app,
+  auth,
+  analytics,
+  database,
+};
 
-console.log(app);
+

@@ -25,10 +25,49 @@ export default function () {
 
     // refactoring data
     const todos = Object.entries(data).map((el) => el[1]);
-    
+
     // creating the header
-    const h2 = document.createElement('h2')
-    h2.textContent = 'Add, remove and edit your todos'
+    const h2 = document.createElement("h2");
+    h2.textContent = "Add, remove and edit your todos";
+
+    const listItems = todos.map((el, i) => {
+      // creating the main li element
+      const li = document.createElement("li");
+      li.setAttribute("id", `li-${i}`);
+
+      // creating the wrapper div
+      const div = document.createElement("div");
+      div.setAttribute("id", `div-${i}`);
+
+      // creating div's child elements
+
+      // creating the span
+      const span = document.createElement("span");
+      span.textContent = `${el.todoText} (${el.category})`;
+
+      // creating the edit button
+      const editButton = document.createElement("button");
+      editButton.setAttribute("id", `edit-button-${i}`);
+      editButton.classList.add("edit-button");
+      editButton.textContent = "Edit";
+
+      // creating the remove button
+      const removeButton = document.createElement("button");
+      removeButton.setAttribute("id", `remove-button-${i}`);
+      removeButton.classList.add("remove-button");
+      removeButton.textContent = "Remove";
+
+      // appending children to the wrapper div
+      div.appendChild(span);
+      div.appendChild(editButton);
+      div.appendChild(removeButton);
+
+      // appending the wrapper div to main li
+      li.appendChild(div);
+
+      // returning the li
+      return li;
+    });
   });
 }
 

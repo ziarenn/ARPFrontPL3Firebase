@@ -38,6 +38,12 @@ const contentSection = document.querySelector(".content");
 // Rendering the home page
 // renderHomePage();
 
+// zaimportuj baze danych z configa, zaimportuj push i ref z firebase-database i wywołaj push na top scopie
+// push(ref(database, "todos/" + auth.currentUser.uid), {
+//   todoText: 'lalalaa',
+//   category: 'work',
+// })
+
 // Home button event listener
 homeButton.addEventListener("click", function () {
   renderHomePage();

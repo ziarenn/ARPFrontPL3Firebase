@@ -105,7 +105,7 @@ export default function () {
   // appending the submit button to form
   form.appendChild(submitButton);
 
-  return todoForm;
+  return form;
   // appending the form to content container
   //contentContainer.appendChild(form);
 

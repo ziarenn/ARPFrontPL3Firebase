@@ -55,3 +55,7 @@ footer {
   margin-right: auto;
   text-align: center;
 }
+
+fieldset {
+  border: none;
+}

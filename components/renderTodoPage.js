@@ -24,8 +24,9 @@ export default function () {
     const data = snapshot.val();
 
     // refactoring data
+    console.log(data);
+    console.log(Object.entries(data));
     const todos = Object.entries(data).map((el) => el[1]);
-
     // creating the header
     const h2 = document.createElement("h2");
     h2.textContent = "Add, remove and edit your todos";
@@ -43,7 +44,7 @@ export default function () {
 
       // creating the span
       const span = document.createElement("span");
-      span.textContent = `${el.todoText} (${el.category})`;
+      span.textContent = `${el.todo} (${el.category})`;
 
       // creating the edit button
       const editButton = document.createElement("button");
@@ -68,6 +69,50 @@ export default function () {
       // returning the li
       return li;
     });
+
+    // creating the todolist
+    const list = document.createElement("ul");
+
+    // appending the li's to the list
+    listItems.forEach((el) => list.appendChild(el));
+
+    // displaying the elements
+    contentContainer.innerHTML = "";
+    contentContainer.appendChild(h2);
+    contentContainer.appendChild(renderTodoForm());
+    contentContainer.appendChild(list);
+
+    // selecting the elements that are already in the DOM
+
+    //wybieracie główny formularz (getElementById/querySelector)
+    // wybieracie główny input tekstowy na todosy
+    // nadajacie event listener (submit) na główny formularz
+    // W LISTENERZE
+    // zbieracie value z głównego text inputu
+    // wybieracie wszystkie radio inputy (getElementsByName)
+    // z tych radio inputów wyciągacie kategorie (ma przyjść w stringu, .value)
+
+    // console.log wszystkie zebrane dane (todo text, kategoria)
+
+    const todoFormInDOM = document.getElementById("todo-form");
+    const inputTodoInDOM = document.getElementById("todo-input");
+    todoFormInDOM.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const radios = document.getElementsByName("category");
+      const category = Array.from(radios).find((el) => el.checked).value;
+      const todo = inputTodoInDOM.value;
+      console.log(category, todo);
+      push(ref(database, "todos/" + auth.currentUser.uid), {
+        todo: todo,
+        category: category,
+      })
+        .then(() => {
+          console.log("Pushed the data to db");
+        })
+        .catch((err) => console.log(err.message));
+    });
+
+    // wybierz wszystkie remove buttons
   });
 }
 

@@ -22,7 +22,7 @@ export default function () {
   onValue(todoRef, (snapshot) => {
     // collecting data from last db update
     const data = snapshot.val();
-
+    console.log(Object.entries(data));
     // refactoring data
     console.log(data);
     console.log(Object.entries(data));
@@ -112,22 +112,50 @@ export default function () {
         .catch((err) => console.log(err.message));
     });
 
-    // wybierz wszystkie remove buttons
+    // ten formularz podpinacie do danego li
+    // nadajecie na niego event listener na submit
+
+    // selecting edit buttons
+    const editButtons = Array.from(
+      document.getElementsByClassName("edit-button")
+    );
+
+    // adding event listeners for each edit button
+    editButtons.forEach((el, i) => {
+      el.addEventListener("click", function (e) {
+        console.log(e.target.parentElement);
+        // this w event listenerach wskazuje na element na ktory el jest nadany
+        // metoda remove usuwa z DOMu dany element
+        this.remove();
+        const div = document.getElementById(`div-${i}`);
+        const form = renderTodoForm();
+        form.id = `todo-form-${i}`;
+        div.appendChild(form);
+        const formInDOM = document.getElementById(`todo-form-${i}`);
+        formInDOM.addEventListener("submit", function (e) {
+          e.preventDefault();
+          console.log(this.childNodes);
+
+          // wybieracie radio inputy w zaleznosci od formularza w ktorym jestescie
+          // szukacie ktory radio input jest checked i sciagacie z niego value
+          // pakujecie te dane do obiektu i wywolanie funkcji update
+          const todoText = this.childNodes[0].value;
+          const selectedCategory = Array.from(
+            this.getElementsByTagName("input")
+          )
+            .slice(1, 5)
+            .find((el) => el.checked).value;
+          console.log(selectedCategory);
+          const updates = {};
+          updates[
+            "todos/" + auth.currentUser.uid + "/" + Object.entries(data)[i][0]
+          ] = {
+            category: selectedCategory,
+            todo: todoText,
+          };
+          update(ref(database), updates);
+        });
+      });
+    });
   });
 }
-
-// const dummyTodos = ["Wyrzuć śmieci", "Wyjdź na spacer z psem"];
-// const contentContainer = document.querySelector(".content");
-// const h2 = document.createElement("h2");
-// const listItems = dummyTodos.map((el) => {
-//   const li = document.createElement("li");
-//   li.textContent = el;
-//   return li;
-// });
-// h2.textContent = listItems ? "Your todos:" : "Add your todos:";
-// const list = document.createElement("ul");
-// listItems.forEach((el) => list.appendChild(el));
-// contentContainer.innerHTML = "";
-// contentContainer.appendChild(h2);
-// renderTodoForm();
-// contentContainer.appendChild(list);

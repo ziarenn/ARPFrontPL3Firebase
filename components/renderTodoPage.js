@@ -157,5 +157,26 @@ export default function () {
         });
       });
     });
+
+    // wybieracie remove buttony
+    // nakladacie na wszystkie event listenery na click
+    // usuwacie remove button ktory zostal klikniety
+    // poszukaj w dokumentacji metody remove i wywolaj ja dla odpowiedniego todosa (pathu) (id todosa, obiekt data)
+
+    // selecting remove buttons and adding event listeners
+    const removeButtons = Array.from(
+      document.getElementsByClassName("remove-button")
+    );
+    removeButtons.forEach((el, i) => {
+      el.addEventListener("click", function () {
+        this.parentElement.parentElement.remove();
+        remove(
+          ref(
+            database,
+            "todos/" + auth.currentUser.uid + "/" + Object.entries(data)[i][0]
+          )
+        );
+      });
+    });
   });
 }

@@ -13,6 +13,6 @@
   "author": "Kacper Żarna",
   "license": "ISC",
   "dependencies": {
-    "firebase": "^9.8.2"
+    "firebase": "^9.8.3"
   }
 }

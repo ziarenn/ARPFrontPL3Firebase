@@ -20,6 +20,7 @@ onAuthStateChanged(auth, (user) => {
 import renderHomePage from "./components/renderHomePage.js";
 import renderTodoPage from "./components/renderTodoPage.js";
 import renderAboutPage from "./components/renderAboutPage.js";
+import renderTeamPage from "./components/renderTeamPage.js";
 import renderLoginPage from "./components/renderLoginPage.js";
 
 // Selecting the most important elements of the page
@@ -28,6 +29,7 @@ import renderLoginPage from "./components/renderLoginPage.js";
 const homeButton = document.getElementById("home-anchor");
 const todosButton = document.getElementById("todos-anchor");
 const aboutButton = document.getElementById("about-anchor");
+const publicButton = document.getElementById("public-anchor");
 const loginButton = document.getElementById("login-anchor");
 
 // Selecting the content section
@@ -58,6 +60,10 @@ todosButton.addEventListener("click", function () {
 // About button event listener
 aboutButton.addEventListener("click", function () {
   renderAboutPage();
+});
+
+publicButton.addEventListener("click", function () {
+  renderTeamPage();
 });
 
 // Login button event listener

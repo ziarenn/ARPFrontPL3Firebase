@@ -2,6 +2,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-analytics.js";
 import { getAuth } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
 import { getDatabase } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js";
 import { getStorage } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-storage.js";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -25,6 +26,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth();
+const firestore = getFirestore(app);
 const database = getDatabase();
 const storage = getStorage(app);
 export default {
@@ -33,4 +35,5 @@ export default {
   analytics,
   database,
   storage,
+  firestore,
 };

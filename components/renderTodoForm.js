@@ -1,15 +1,4 @@
-import {
-  ref,
-  push,
-} from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js";
-import firebase from "../firebaseConfig.js";
-
-const app = firebase.app;
-const auth = firebase.auth;
-const database = firebase.database;
-
 export default function () {
-  const contentContainer = document.querySelector(".content");
   const form = document.createElement("form");
   form.setAttribute("id", "todo-form");
 
@@ -106,29 +95,4 @@ export default function () {
   form.appendChild(submitButton);
 
   return form;
-  // appending the form to content container
-  //contentContainer.appendChild(form);
-
-  // // selecting elements that are already in the DOM
-  // const formInDOM = document.getElementById("todo-form");
-  // const inputInDOM = document.getElementById("todo-input");
-
-  // const radios = document.getElementsByName("category");
-
-  // // adding the event lister to the form
-
-  // formInDOM.addEventListener("submit", function (e) {
-  //   e.preventDefault();
-  //   const selectedCategory = Array.from(radios).find((el) => el.checked).value;
-  //   const todo = inputInDOM.value;
-  //   const response = {
-  //     todo: todo,
-  //     category: selectedCategory,
-  //   };
-  //   console.log(response);
-  //   // wrzuć odpowiednie dane do bazy danych
-  //   push(ref(database, "todos/" + auth.currentUser.uid), response).then(() => {
-  //     console.log("Operacja push zakończona powodzeniem");
-  //   });
-  // });
 }

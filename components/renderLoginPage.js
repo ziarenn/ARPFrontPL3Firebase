@@ -30,7 +30,7 @@ export default function () {
   contentContainer.appendChild(form);
   contentContainer.appendChild(registerButton);
   const registerButtonInDOM = document.getElementById("register-button");
-  registerButtonInDOM.addEventListener("click", function (e) {
+  registerButtonInDOM.addEventListener("click", function () {
     contentContainer.innerHTML = "";
     renderRegisterForm();
   });
@@ -43,12 +43,11 @@ export default function () {
     signInWithEmailAndPassword(auth, email, password).then(
       (userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.uid)
+        console.log(user.uid);
         console.log(user);
         document.getElementById("login-anchor").textContent = "Logout";
         renderHomePage();
       }
     );
   });
-  // dodaj event listener na formularz i wykorzystaj narzędzia firebase/auth do zalogowania użytkownika
 }

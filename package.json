@@ -4,7 +4,9 @@
   "description": "Simple firebase app",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "npm test",
+    "prepare": "husky install",
+    "lint": "npx eslint ./"
   },
   "keywords": [
     "javascript",
@@ -14,5 +16,14 @@
   "license": "ISC",
   "dependencies": {
     "firebase": "^9.8.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.3"
   }
 }

@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
-import firebase from '../firebaseConfig.js'
+import firebase from '../../firebaseConfig.js'
 // initializing authentication service
 
 const auth = firebase.auth;

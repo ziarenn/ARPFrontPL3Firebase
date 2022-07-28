@@ -1,9 +1,9 @@
-import renderLoginForm from "./renderLoginForm.js";
-import renderRegisterForm from "./renderRegisterForm.js";
-import renderHomePage from "./renderHomePage.js";
+import renderLoginForm from "../LoginForm/renderLoginForm.js";
+import renderRegisterForm from "../RegisterForm/renderRegisterForm.js";
+import renderHomePage from "../HomePage/renderHomePage.js";
 import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-auth.js";
 //import auth
-import firebase from "../firebaseConfig.js";
+import firebase from "../../firebaseConfig.js";
 const auth = firebase.auth;
 
 export default function () {

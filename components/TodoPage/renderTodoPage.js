@@ -1,4 +1,4 @@
-import renderTodoForm from "./renderTodoForm.js";
+import renderTodoForm from "../TodoForm/renderTodoForm.js";
 import {
   ref,
   onValue,
@@ -6,7 +6,7 @@ import {
   update,
   remove,
 } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-database.js";
-import firebase from "../firebaseConfig.js";
+import firebase from "../../firebaseConfig.js";
 const auth = firebase.auth;
 const database = firebase.database;
 

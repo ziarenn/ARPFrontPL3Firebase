@@ -1,4 +1,4 @@
-import renderTodoForm from "./renderTodoForm.js";
+import renderTodoForm from "../TodoForm/renderTodoForm.js";
 
 import {
   collection,
@@ -6,7 +6,7 @@ import {
   getDocs,
 } from "https://www.gstatic.com/firebasejs/9.8.2/firebase-firestore.js";
 
-import firebase from "../firebaseConfig.js";
+import firebase from "../../firebaseConfig.js";
 
 export default function () {
   const contentContainer = document.querySelector(".content");

@@ -1,4 +1,4 @@
-import firebase from "../firebaseConfig.js";
+import firebase from "../../firebaseConfig.js";
 import {
   uploadBytes,
   ref,

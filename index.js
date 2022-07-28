@@ -17,11 +17,11 @@ onAuthStateChanged(auth, (user) => {
 });
 
 // Importing components
-import renderHomePage from "./components/renderHomePage.js";
-import renderTodoPage from "./components/renderTodoPage.js";
-import renderAboutPage from "./components/renderAboutPage.js";
-import renderTeamPage from "./components/renderTeamPage.js";
-import renderLoginPage from "./components/renderLoginPage.js";
+import renderHomePage from "./components/HomePage/renderHomePage.js";
+import renderTodoPage from "./components/TodoPage/renderTodoPage.js";
+import renderAboutPage from "./components/AboutPage/renderAboutPage.js";
+import renderTeamPage from "./components/TeamPage/renderTeamPage.js";
+import renderLoginPage from "./components/LoginPage/renderLoginPage.js";
 
 // Selecting the most important elements of the page
 

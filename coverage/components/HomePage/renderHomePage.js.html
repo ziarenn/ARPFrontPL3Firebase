@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28% </span>
+                <span class="strong">44% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/25</span>
+                <span class='fraction'>11/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">16.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>1/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28% </span>
+                <span class="strong">44% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/25</span>
+                <span class='fraction'>11/25</span>
             </div>
         
             
@@ -93,10 +93,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -113,17 +113,17 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const clearContentContainer = (contentContainer) =&gt; {
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export const clearContentContainer = (contentContainer) =&gt; {
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >  contentContainer.innerHTML = "";</span></span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
-const createH2 = (<span class="fstat-no" title="function not covered" >) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const h2 = document.createElement("h2");</span>
-<span class="cstat-no" title="statement not covered" >  h2.textContent = "Welcome!";</span>
-<span class="cstat-no" title="statement not covered" >  return h2;</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+export const createH2 = () =&gt; {
+  const h2 = document.createElement("h2");
+  h2.textContent = "Welcome!";
+  return h2;
+};
 &nbsp;
-const createParagraph = (<span class="fstat-no" title="function not covered" >) =&gt; {</span>
+export const createParagraph = (<span class="fstat-no" title="function not covered" >) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  const p = document.createElement("p");</span>
 <span class="cstat-no" title="statement not covered" >  p.textContent =</span>
 <span class="cstat-no" title="statement not covered" >    "This is a simple web page written in vanilla JavaScript, used as a practice project in frontend courses at Software Development Academy. Block subject: Firebase.";</span>
@@ -131,7 +131,7 @@ const createParagraph = (<span class="fstat-no" title="function not covered" >) 
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export default f<span class="fstat-no" title="function not covered" >unction () {</span>
-<span class="cstat-no" title="statement not covered" >  const contentContainer = document.querySelector(".content");</span>
+<span class="cstat-no" title="statement not covered" >  const contentContainer = document.querySelec<span class="fstat-no" title="function not covered" ><span class="fstat-no" title="function not covered" >tor(".content");</span></span></span>
 <span class="cstat-no" title="statement not covered" >  clearContentContainer(contentContainer);</span>
 <span class="cstat-no" title="statement not covered" >  const h2 = createH2();</span>
 <span class="cstat-no" title="statement not covered" >  const p = createParagraph();</span>
@@ -145,7 +145,7 @@ export default f<span class="fstat-no" title="function not covered" >unction () 
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-28T16:32:36.091Z
+                at 2022-07-28T17:12:55.235Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

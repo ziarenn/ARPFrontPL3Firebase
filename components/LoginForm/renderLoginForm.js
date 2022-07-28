@@ -1,10 +1,15 @@
 export default function () {
+  // form
   const form = document.createElement("form");
   form.setAttribute("id", "login-form");
+
+  // inputEmail
   const inputEmail = document.createElement("input");
   inputEmail.setAttribute("type", "email");
   inputEmail.setAttribute("id", "input-email");
   inputEmail.setAttribute("placeholder", "email");
+
+  // inputPassword
   const inputPassword = document.createElement("input");
   inputPassword.setAttribute("type", "Password");
   inputPassword.setAttribute("id", "input-Password");

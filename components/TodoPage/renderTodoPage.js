@@ -22,6 +22,31 @@ export default function () {
   onValue(todoRef, (snapshot) => {
     // collecting data from last db update
     const data = snapshot.val();
+    if (!data) {
+      const h2 = document.createElement("h2");
+      h2.textContent = "Add, remove and edit your todos";
+      contentContainer.innerHTML = "";
+      contentContainer.appendChild(h2);
+      const todoFormInDOM = renderTodoForm();
+      contentContainer.appendChild(todoFormInDOM);
+      todoFormInDOM.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const radios = document.getElementsByName("category");
+        const category = Array.from(radios).find((el) => el.checked).value;
+        const inputTodoInDOM = document.getElementById("todo-input");
+        const todo = inputTodoInDOM.value;
+        console.log(category, todo);
+        push(ref(database, "todos/" + auth.currentUser.uid), {
+          todo: todo,
+          category: category,
+        })
+          .then(() => {
+            console.log("Pushed the data to db");
+          })
+          .catch((err) => console.log(err.message));
+      });
+      return;
+    }
     console.log(Object.entries(data));
     // refactoring data
     console.log(data);
@@ -84,16 +109,6 @@ export default function () {
 
     // selecting the elements that are already in the DOM
 
-    //wybieracie główny formularz (getElementById/querySelector)
-    // wybieracie główny input tekstowy na todosy
-    // nadajacie event listener (submit) na główny formularz
-    // W LISTENERZE
-    // zbieracie value z głównego text inputu
-    // wybieracie wszystkie radio inputy (getElementsByName)
-    // z tych radio inputów wyciągacie kategorie (ma przyjść w stringu, .value)
-
-    // console.log wszystkie zebrane dane (todo text, kategoria)
-
     const todoFormInDOM = document.getElementById("todo-form");
     const inputTodoInDOM = document.getElementById("todo-input");
     todoFormInDOM.addEventListener("submit", function (e) {
@@ -112,9 +127,6 @@ export default function () {
         .catch((err) => console.log(err.message));
     });
 
-    // ten formularz podpinacie do danego li
-    // nadajecie na niego event listener na submit
-
     // selecting edit buttons
     const editButtons = Array.from(
       document.getElementsByClassName("edit-button")
@@ -122,10 +134,7 @@ export default function () {
 
     // adding event listeners for each edit button
     editButtons.forEach((el, i) => {
-      el.addEventListener("click", function (e) {
-        console.log(e.target.parentElement);
-        // this w event listenerach wskazuje na element na ktory el jest nadany
-        // metoda remove usuwa z DOMu dany element
+      el.addEventListener("click", function () {
         this.remove();
         const div = document.getElementById(`div-${i}`);
         const form = renderTodoForm();
@@ -134,12 +143,8 @@ export default function () {
         const formInDOM = document.getElementById(`todo-form-${i}`);
         formInDOM.addEventListener("submit", function (e) {
           e.preventDefault();
-          console.log(this.childNodes);
-
-          // wybieracie radio inputy w zaleznosci od formularza w ktorym jestescie
-          // szukacie ktory radio input jest checked i sciagacie z niego value
-          // pakujecie te dane do obiektu i wywolanie funkcji update
           const todoText = this.childNodes[0].value;
+          console.log(todoText);
           const selectedCategory = Array.from(
             this.getElementsByTagName("input")
           )
@@ -157,11 +162,6 @@ export default function () {
         });
       });
     });
-
-    // wybieracie remove buttony
-    // nakladacie na wszystkie event listenery na click
-    // usuwacie remove button ktory zostal klikniety
-    // poszukaj w dokumentacji metody remove i wywolaj ja dla odpowiedniego todosa (pathu) (id todosa, obiekt data)
 
     // selecting remove buttons and adding event listeners
     const removeButtons = Array.from(

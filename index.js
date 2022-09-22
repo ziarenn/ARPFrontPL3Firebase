@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 import {
   getAuth,
@@ -10,9 +10,11 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log(`User is logged in (${user.email}), onAuthStateChanged`);
+    loginButton.textContent = "Log out";
   } else {
     console.log(`No user logged in. onAuthStateChanged`);
     renderHomePage();
+    loginButton.textContent = "Log in";
   }
 });
 
@@ -35,16 +37,10 @@ const loginButton = document.getElementById("login-anchor");
 // Selecting the content section
 const contentSection = document.querySelector(".content");
 
-// Adding event listeners to the navbar buttons
-
 // Rendering the home page
-// renderHomePage();
+renderHomePage();
 
-// zaimportuj baze danych z configa, zaimportuj push i ref z firebase-database i wywołaj push na top scopie
-// push(ref(database, "todos/" + auth.currentUser.uid), {
-//   todoText: 'lalalaa',
-//   category: 'work',
-// })
+// Adding event listeners to the navbar buttons
 
 // Home button event listener
 homeButton.addEventListener("click", function () {
@@ -53,6 +49,7 @@ homeButton.addEventListener("click", function () {
 
 // Todos button event listener
 todosButton.addEventListener("click", function () {
+  console.log(123);
   const user = auth.currentUser;
   user ? renderTodoPage() : renderLoginPage();
 });
@@ -62,13 +59,13 @@ aboutButton.addEventListener("click", function () {
   renderAboutPage();
 });
 
+// Team todos button event listener
 publicButton.addEventListener("click", function () {
   renderTeamPage();
 });
 
 // Login button event listener
 loginButton.addEventListener("click", function () {
-  renderLoginPage();
   const user = auth.currentUser;
   if (user) {
     signOut(auth)
@@ -83,9 +80,4 @@ loginButton.addEventListener("click", function () {
     contentSection.innerHTML = "";
     renderLoginPage();
   }
-  // sprawdzacie czy uzytkownik istnieje
-  //jezeli istnieje:
-  // poszukajcie i uzyjcie funkcji signOut po czym wyswietlacie homePage
-  // jezeli nie istnieje:
-  // render loginPage
 });
